@@ -34,3 +34,4 @@ app.get('/consulta-cep/:cep', async (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`); //string template 
 });
+
