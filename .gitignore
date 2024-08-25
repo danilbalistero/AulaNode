@@ -1,8 +1,7 @@
 /node_modules
-tmp
-.eslintrc.json
 .vscode/
-yarn.lock
-package-lock.json
+.eslintrc.json
 .editorconfig
+package-lock.json
+yarn.lock
 tmp/
