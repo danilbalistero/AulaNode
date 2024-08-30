@@ -1,4 +1,5 @@
 const { Endereco } = require('../models'); 
+const axios = require('axios');
 
 exports.createEndereco = async (req, res) => {
     try {
@@ -90,5 +91,27 @@ exports.deleteEndereco = async (req, res) => {
         res.status(204).send();
     } catch (error) {
         res.status(500).json({ error: 'Erro ao deletar endereço', details: error.message });
+    }
+};
+
+exports.createEnderecoCep = async (req, res) => {
+    const cep = req.params.cep;
+
+    const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+    try {
+        const novoEndereco = await Endereco.create({
+            Cep: response.data.cep,
+            Logradouro: response.data.logradouro,
+            Numero: 0,
+            Complemento: response.data.complemento,
+            Bairro: response.data.bairro,
+            Cidade: response.data.localidade,
+            Estado: response.data.uf,
+            MunicipioIBGE: response.data.ibge,
+        });
+
+        res.status(201).json(novoEndereco);
+    } catch (error) {
+        res.status(500).json({error: "Erro ao consultar cep / criar encereço", details: error.message})
     }
 };

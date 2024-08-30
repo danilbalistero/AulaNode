@@ -15,11 +15,8 @@ module.exports = {
      Id: {
 
        type: Sequelize.INTEGER,
-
        primaryKey: true,
-
-       autoincrement: true,
-
+       autoIncrement: true,
        allowNull: false,
 
      },
@@ -87,9 +84,7 @@ module.exports = {
        allowNull: false,
 
      },
-
    });
-
   },
 
 
